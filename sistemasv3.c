@@ -48,6 +48,24 @@ int main()
                     }
                 }
         }
+        det=1;
+         for(i=1;i<= n;i++)
+        {
+         det = det * A[i][i];
+        }
+
+    if(det==0.0){
+        fprintf(archivo,"El sistema no tiene solución");
+    }
+        else{
+            fprintf(archivo,"Solucion:\n");
+            for(i=1; i<=n; i++)
+            {
+            x[i]=A[i][n+1]/A[i][i];
+            fprintf(archivo,"\n x%d=%f\n",i,x[i]);
+            }
+        }
+
 
     fclose(archivo);
     fclose(matriz);
