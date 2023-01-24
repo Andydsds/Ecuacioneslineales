@@ -4,6 +4,9 @@ int main()
     int i,j,k,n;
     float A[50][50],x[50];
     float a,d,c;
+    FILE *archivo;
+    archivo = fopen("resultado.txt","w+");
+
     printf("Ingresa el tamaño de la matriz:\n ");
     scanf("%d",&n);
     printf("Ingresa los elementos\n");
@@ -15,6 +18,7 @@ int main()
             scanf("%f",&A[i][j]);
         }
     }
+
     for(j=1; j<=n; j++)
         {
             if(A[j][j] == 0.0)
@@ -36,11 +40,13 @@ int main()
                     }
                 }
         }
-    printf("Solucion:\n");
+    fprintf(archivo,"Solucion:\n");
+
     for(i=1; i<=n; i++)
     {
         x[i]=A[i][n+1]/A[i][i];
-        printf("\n x%d=%f\n",i,x[i]);
+        fprintf(archivo,"\n x%d=%f\n",i,x[i]);
     }
+    fclose(archivo);
     return 0;
 }
