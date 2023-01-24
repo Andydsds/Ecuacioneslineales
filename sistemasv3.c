@@ -2,20 +2,28 @@
 int main()
 {
     int i,j,k,n;
-    float A[50][50],x[50];
+    float A[50][50],x[50],det=1;
     float a,d,c;
-    FILE *archivo;
-    archivo = fopen("resultado.txt","w+");
+    FILE *archivo, *matriz;
+    char espacio;
+    char p1,p2;
 
-    printf("Ingresa el tamaño de la matriz:\n ");
-    scanf("%d",&n);
-    printf("Ingresa los elementos\n");
+    archivo = fopen("resultado.txt","w+");
+    matriz=fopen("matriz.txt","r");
+
+    //printf("Ingresa el tamaño de la matriz:\n ");
+    fscanf(matriz,"%d",&n);
+    fscanf(matriz,"%c",&espacio);
+
+   // printf("Ingresa los elementos\n");
     for(i=1; i<=n; i++)
     {
         for(j=1; j<=(n+1); j++)
         {
-            printf(" A[%d][%d]:", i,j);
-            scanf("%f",&A[i][j]);
+            fscanf(matriz,"%f",&A[i][j]);
+            if(j<n+1){
+                fscanf(matriz,"%c",&espacio);
+            }
         }
     }
 
@@ -23,7 +31,7 @@ int main()
         {
             if(A[j][j] == 0.0)
 			  {
-				   printf("Matriz no invertible");
+				   printf("Error");
 				   exit(0);
 			  }
             for(i=1; i<=n; i++)
@@ -40,13 +48,9 @@ int main()
                     }
                 }
         }
-    fprintf(archivo,"Solucion:\n");
 
-    for(i=1; i<=n; i++)
-    {
-        x[i]=A[i][n+1]/A[i][i];
-        fprintf(archivo,"\n x%d=%f\n",i,x[i]);
-    }
     fclose(archivo);
+    fclose(matriz);
     return 0;
 }
+
