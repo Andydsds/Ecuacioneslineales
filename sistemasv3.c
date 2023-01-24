@@ -4,7 +4,7 @@ int main()
     int i,j,k,n;
     float A[50][50],x[50];
     float a,d,c;
-    printf("Ingresa el tamaño de la matriz:\n ");
+    printf("Ingresa el tamaÃ±o de la matriz:\n ");
     scanf("%d",&n);
     printf("Ingresa los elementos\n");
     for(i=1; i<=n; i++)
@@ -17,20 +17,25 @@ int main()
     }
     for(j=1; j<=n; j++)
         {
-        for(i=1; i<=n; i++)
-        {
-            if(i!=j)
-            {
-                d=A[i][j];
-                a=A[j][j];
-             c=A[i][j]/A[j][j];
-    for(k=1; k<=n+1; k++)
+            if(A[j][j] == 0.0)
+			  {
+				   printf("Matriz no invertible");
+				   exit(0);
+			  }
+            for(i=1; i<=n; i++)
                 {
-                    A[i][k]=A[i][k]-c*A[j][k];
+                    if(i!=j)
+                    {
+                        d=A[i][j];
+                        a=A[j][j];
+                        c=A[i][j]/A[j][j];
+                        for(k=1; k<=n+1; k++)
+                        {
+                            A[i][k]=A[i][k]-c*A[j][k];
+                        }
+                    }
                 }
-            }
         }
-    }
     printf("Solucion:\n");
     for(i=1; i<=n; i++)
     {
